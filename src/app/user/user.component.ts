@@ -19,7 +19,7 @@ import 'rxjs/add/operator/map';
 })
 export class UserComponent implements OnInit, OnDestroy, AfterViewInit, OnChanges {
 
-  @ViewChild('seachInput') searchInput: ElementRef;
+  @ViewChild('searchInput') searchInput: ElementRef;
   search$: Subject<string> = new Subject<string>();
   subscription: Subscription;
 
@@ -39,16 +39,15 @@ export class UserComponent implements OnInit, OnDestroy, AfterViewInit, OnChange
   ngAfterViewInit(){
 
     // play views here and only here....
-   this.search$.subscribe(console.log);
 
-  //  const input = this.searchInput.nativeElement;
-  //   this.subscription = Observable.fromEvent(input, 'input')
-  //     .map((event: KeyboardEvent) => (<HTMLInputElement>event.target).value)
-  //   .subscribe(console.log);
+   const input = this.searchInput.nativeElement;
+    this.subscription = Observable.fromEvent(input, 'input')
+      .map((event: KeyboardEvent) => (<HTMLInputElement>event.target).value)
+    .subscribe(console.log);
 
   }
 
   ngOnChanges(){
-
+    // receives simplechanges from @Input()
   }
 }
